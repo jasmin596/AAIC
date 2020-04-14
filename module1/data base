@@ -1,0 +1,355 @@
+<<<<<<< HEAD
+Data base:
+-----------
+Examples of the db oracle,mysql,sqlserver are popular db there r relational data base.
+relational db			non relational db
+scien 1970's 			ex for non relational db is mango db
+it also required sql	it also required
+db:it makes access to the data.it is software.
+db provide simler,easier,faster,reliable,secuse.
+In relation data base the data is strored in the form of tables.
+Normalization:
+--------------
+cteating a good table by eliminating redencey 
+why sql:
+--------
+structured query language(1970's IBM)
+it is a standard way to query/obtain/add/delete/modify
+sql is a declarative programming language.
+sql-->parser,compiler-->query optimzer
+		->understand	  (optimal way to execute)
+		->code(c/c++/java/py)
+IMDB dataset:
+-------------
+IMDB is a websit
+it has information about all languages movies
+in imdb that has data approximatly 388,269 movies(1888-2008)
+817,718 actions
+86,880 directors
+table1:
+--------
+directors		movies		     actors
+----------		-------		     ------
+id 				id	(prymarykey) id(primarykey)
+first_name		name		     first_name
+last_name		year		     last_name
+				rank		     gender
+table::2
+-----------	
+roles
+------
+actor_id(fornkey)
+movie_id(fornkey)
+SQL:
+----
+-----
+USE imdb;
+SHOW TABLES;
+DESCRIBE movies;
+
+****************************************************************************************************
+
+SELECT * FROM movies;
+# more data transfer
+
+#result-set: a set of rows that form the result of a query along with column-names and meta-data.
+
+SELECT name,year FROM movies; 
+
+SELECT rankscore,name FROM movies;
+#row order same as the one in the table
+
+****************************************************************************************************
+
+
+LIMIT:
+
+SELECT name,rankscore FROM movies LIMIT 20;
+
+SELECT name,rankscore FROM movies LIMIT 20 OFFSET 40;
+
+****************************************************************************************************
+
+
+ORDER BY:
+
+# list recent movies first
+
+SELECT name,rankscore,year FROM movies ORDER BY year DESC LIMIT 10;
+
+# default:ASC
+
+SELECT name,rankscore,year FROM movies ORDER BY year LIMIT 10;
+
+# the output row order maynot be same as the one in the table due to query optimzier and internal data-structres/indices.
+
+****************************************************************************************************
+
+
+DISTINCT:
+
+# list all genres of 
+SELECT DISTINCT genre FROM movies_genres;
+
+
+# multiple-column DISTINCT
+SELECT DISTINCT first_name, last_name FROM directors;
+
+****************************************************************************************************
+
+WHERE:
+
+# list all movies with rankscore>9
+SELECT name,year,rankscore FROM movies WHERE rankscore>9 ;
+
+SELECT name,year,rankscore FROM movies WHERE rankscore>9 ORDER BY rankscore DESC LIMIT 20;
+
+
+# Condition's outputs: TRUE, FALSE, NULL
+
+# Comparison Operators: = , <> or != , < , <= , >, >= 
+SELECT * FROM movies_genres WHERE genre = 'Comedy';
+
+SELECT * FROM movies_genres WHERE genre <> 'Horror';
+
+
+NULL => doesnot-exist/unknown/missing
+
+# "=" doesnot work with NULL, will give you an empty result-set.
+SELECT name,year,rankscore FROM movies WHERE rankscore = NULL;
+
+
+SELECT name,year,rankscore FROM movies WHERE rankscore IS NULL LIMIT 20;
+
+SELECT name,year,rankscore FROM movies WHERE rankscore IS NOT NULL LIMIT 20;
+
+****************************************************************************************************
+
+# LOGICAL OPERATORS: AND, OR, NOT, ALL, ANY, BETWEEN, EXISTS, IN, LIKE, SOME
+
+# website search filters
+SELECT name,year,rankscore FROM movies WHERE rankscore>9 AND year>2000;
+
+
+SELECT name,year,rankscore FROM movies WHERE NOT year<=2000 LIMIT 20;
+
+
+SELECT name,year,rankscore FROM movies WHERE rankscore>9 OR year>2007;
+
+
+# will discsuss about ANY and ALL when we discuss sub-queries
+
+
+
+SELECT name,year,rankscore FROM movies WHERE year BETWEEN 1999 AND 2000;
+#inclusive: year>=1999 and year<=2000
+
+
+SELECT name,year,rankscore FROM movies WHERE year BETWEEN 2000 AND 1999;
+#lowvalue <= highvalue else you will get an empty result set
+
+
+SELECT director_id, genre FROM directors_genres WHERE genre IN ('Comedy','Horror');
+# same as genre='Comedy' OR genre='Horror'
+
+
+SELECT name,year,rankscore FROM movies WHERE name LIKE 'Tis%';
+# % => wildcard character to imply zero or more characters
+
+
+SELECT first_name, last_name FROM actors WHERE first_name LIKE '%es';
+# first name ending in 'es'
+
+
+SELECT first_name, last_name FROM actors WHERE first_name LIKE '%es%';
+#first name contains 'es'
+
+
+SELECT first_name, last_name FROM actors WHERE first_name LIKE 'Agn_s';
+# '_' implies exactly one character.
+
+
+# If we want to macth % or _, we should use the backslash as the escape character: \% and \_
+
+
+SELECT first_name, last_name FROM actors WHERE first_name LIKE 'L%' AND first_name NOT LIKE 'Li%';
+
+
+=======
+Data base:
+-----------
+Examples of the db oracle,mysql,sqlserver are popular db there r relational data base.
+relational db			non relational db
+scien 1970's 			ex for non relational db is mango db
+it also required sql	it also required
+db:it makes access to the data.it is software.
+db provide simler,easier,faster,reliable,secuse.
+In relation data base the data is strored in the form of tables.
+Normalization:
+--------------
+cteating a good table by eliminating redencey 
+why sql:
+--------
+structured query language(1970's IBM)
+it is a standard way to query/obtain/add/delete/modify
+sql is a declarative programming language.
+sql-->parser,compiler-->query optimzer
+		->understand	  (optimal way to execute)
+		->code(c/c++/java/py)
+IMDB dataset:
+-------------
+IMDB is a websit
+it has information about all languages movies
+in imdb that has data approximatly 388,269 movies(1888-2008)
+817,718 actions
+86,880 directors
+table1:
+--------
+directors		movies		     actors
+----------		-------		     ------
+id 				id	(prymarykey) id(primarykey)
+first_name		name		     first_name
+last_name		year		     last_name
+				rank		     gender
+table::2
+-----------	
+roles
+------
+actor_id(fornkey)
+movie_id(fornkey)
+SQL:
+----
+-----
+USE imdb;
+SHOW TABLES;
+DESCRIBE movies;
+
+****************************************************************************************************
+
+SELECT * FROM movies;
+# more data transfer
+
+#result-set: a set of rows that form the result of a query along with column-names and meta-data.
+
+SELECT name,year FROM movies; 
+
+SELECT rankscore,name FROM movies;
+#row order same as the one in the table
+
+****************************************************************************************************
+
+
+LIMIT:
+
+SELECT name,rankscore FROM movies LIMIT 20;
+
+SELECT name,rankscore FROM movies LIMIT 20 OFFSET 40;
+
+****************************************************************************************************
+
+
+ORDER BY:
+
+# list recent movies first
+
+SELECT name,rankscore,year FROM movies ORDER BY year DESC LIMIT 10;
+
+# default:ASC
+
+SELECT name,rankscore,year FROM movies ORDER BY year LIMIT 10;
+
+# the output row order maynot be same as the one in the table due to query optimzier and internal data-structres/indices.
+
+****************************************************************************************************
+
+
+DISTINCT:
+
+# list all genres of 
+SELECT DISTINCT genre FROM movies_genres;
+
+
+# multiple-column DISTINCT
+SELECT DISTINCT first_name, last_name FROM directors;
+
+****************************************************************************************************
+
+WHERE:
+
+# list all movies with rankscore>9
+SELECT name,year,rankscore FROM movies WHERE rankscore>9 ;
+
+SELECT name,year,rankscore FROM movies WHERE rankscore>9 ORDER BY rankscore DESC LIMIT 20;
+
+
+# Condition's outputs: TRUE, FALSE, NULL
+
+# Comparison Operators: = , <> or != , < , <= , >, >= 
+SELECT * FROM movies_genres WHERE genre = 'Comedy';
+
+SELECT * FROM movies_genres WHERE genre <> 'Horror';
+
+
+NULL => doesnot-exist/unknown/missing
+
+# "=" doesnot work with NULL, will give you an empty result-set.
+SELECT name,year,rankscore FROM movies WHERE rankscore = NULL;
+
+
+SELECT name,year,rankscore FROM movies WHERE rankscore IS NULL LIMIT 20;
+
+SELECT name,year,rankscore FROM movies WHERE rankscore IS NOT NULL LIMIT 20;
+
+****************************************************************************************************
+
+# LOGICAL OPERATORS: AND, OR, NOT, ALL, ANY, BETWEEN, EXISTS, IN, LIKE, SOME
+
+# website search filters
+SELECT name,year,rankscore FROM movies WHERE rankscore>9 AND year>2000;
+
+
+SELECT name,year,rankscore FROM movies WHERE NOT year<=2000 LIMIT 20;
+
+
+SELECT name,year,rankscore FROM movies WHERE rankscore>9 OR year>2007;
+
+
+# will discsuss about ANY and ALL when we discuss sub-queries
+
+
+
+SELECT name,year,rankscore FROM movies WHERE year BETWEEN 1999 AND 2000;
+#inclusive: year>=1999 and year<=2000
+
+
+SELECT name,year,rankscore FROM movies WHERE year BETWEEN 2000 AND 1999;
+#lowvalue <= highvalue else you will get an empty result set
+
+
+SELECT director_id, genre FROM directors_genres WHERE genre IN ('Comedy','Horror');
+# same as genre='Comedy' OR genre='Horror'
+
+
+SELECT name,year,rankscore FROM movies WHERE name LIKE 'Tis%';
+# % => wildcard character to imply zero or more characters
+
+
+SELECT first_name, last_name FROM actors WHERE first_name LIKE '%es';
+# first name ending in 'es'
+
+
+SELECT first_name, last_name FROM actors WHERE first_name LIKE '%es%';
+#first name contains 'es'
+
+
+SELECT first_name, last_name FROM actors WHERE first_name LIKE 'Agn_s';
+# '_' implies exactly one character.
+
+
+# If we want to macth % or _, we should use the backslash as the escape character: \% and \_
+
+
+SELECT first_name, last_name FROM actors WHERE first_name LIKE 'L%' AND first_name NOT LIKE 'Li%';
+
+
+>>>>>>> 1ed1ee01020913c26c32671363c70d172766db08
